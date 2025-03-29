@@ -168,6 +168,7 @@ function OpenPointsShop(pointsArena)
             surface.DrawOutlinedRect(0, 0, w, h, 1)
         end
 
+
         local titleLabel = vgui.Create("DLabel", itemPanel)
         titleLabel:SetPos(10, 10)
         titleLabel:SetSize(300, 20)
@@ -249,6 +250,10 @@ function OpenPregamePanel()
         surface.DrawRect(0, h - 3, w, 3)
         draw.SimpleText("Pregame Menu", "DermaDefault", 10, 2, Color(0, 0, 0, 100), TEXT_ALIGN_LEFT)
         draw.SimpleText("Pregame Menu", "DermaDefault", 9, 1, colors.textNormal, TEXT_ALIGN_LEFT)
+    end
+
+    frame.OnClose = function(...)
+        chat.AddText(Color(255, 255, 255), "That's fine! To open this again, use ", Color(255,136,0), "!pregame", Color(255,255,255), " to open it again :)")
     end
 
     local pointsShopButton = vgui.Create("DButton", frame)
