@@ -29,8 +29,11 @@ SWEP.WorldModel = ""
 SWEP.ShowViewModel = true
 SWEP.ShowWorldModel = false
 
+
 function SWEP:Initialize()
     self:SetHoldType("fist")
+    self:SetNWInt("XRayMetre", 100)
+    self:SetNWBool("CanKill", true)
 end
 
 function SWEP:Deploy()
@@ -66,26 +69,26 @@ function SWEP:ShouldDropOnDie()
 end
 
 function SWEP:Reload()
-    if SERVER and IsValid(self:GetOwner()) then
+    if SERVER and IsValid(self:GetOwner()) and not self:GetNWBool("KillMode", false) and self:GetNWBool("CanKill", false) then
         self:GetOwner():EmitSound("scream.wav", 100, 70)
+        self:SetNWBool("KillMode", true)
+        self:SetNWBool("CanKill", false)
+        
+        timer.Simple(3, function()
+            if IsValid(self) then 
+                self:SetNWBool("KillMode", false) 
+            end
+        end)
+
+        timer.Simple(10, function()
+            if IsValid(self) then 
+                self:SetNWBool("CanKill", true) 
+            end
+        end)
     end
+
     return false
 end
-
-local function PerformScream(ply)
-    local weapon = ply:GetActiveWeapon()
-    if IsValid(weapon) and weapon:GetClass() == "fists_of_096" then
-        if SERVER then
-            ply:EmitSound("scream.wav", 100, 70)
-        end
-    end
-end
-
-hook.Add("KeyPress", "SCP096_Scream", function(ply, key)
-    if key == IN_USE and IsValid(ply) and IsValid(ply:GetActiveWeapon()) and ply:GetActiveWeapon():GetClass() == "fists_of_096" then
-        PerformScream(ply)
-    end
-end)
 
 function SWEP:PrimaryAttack()
     local owner = self:GetOwner()
@@ -140,10 +143,23 @@ function SWEP:Think()
             hook.Add("HUDPaint", "RedScreenEffect", function()
                 if not IsValid(owner) or not owner:Alive() then return end
                 if owner == nil or owner == NULL then return end
+                if not self or self == NULL then return end
 
                 surface.SetDrawColor(255, 0, 0, 150)
                 surface.DrawRect(0, 0, ScrW(), ScrH())
+                
+                if self:GetNWBool("CanKill", false) then
+                    draw.SimpleText("You can now use kill mode (R)", "Trebuchet24", ScrW() / 2, ScrH() - 50, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
+                else
+                    draw.SimpleText("Kill mode recharging", "Trebuchet24", ScrW() / 2, ScrH() - 50, Color(173, 173, 173), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
+                end
             end)
+
+            if self:GetNWBool("KillMode", false) then
+                halo.Add(player.GetAll(), Color(255, 0, 0), 5, 5, 2, true, true)
+            end
+
+            
         end
     else
         if CLIENT then
