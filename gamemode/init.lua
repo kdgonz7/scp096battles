@@ -26,8 +26,8 @@ gameInfo = {
     HumanLevel = 0,
 }
 
-SetGlobalInt("SCP096Score", 25)
-SetGlobalInt("HumansScore", 25)
+SetGlobalInt("SCP096Score", 0)
+SetGlobalInt("HumansScore", 0)
 
 SetGlobalEntity("PlayerWhoSCP", nil)
 SetGlobalEntity("PlayerWhoHuman", nil)
