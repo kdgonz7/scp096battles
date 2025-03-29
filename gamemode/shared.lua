@@ -1,27 +1,27 @@
 -- Gamemode Information
 GM.Name = "SCP-096 Battles"
-GM.Author = "Your Name"
-GM.Email = "your.email@example.com"
-GM.Website = "http://yourwebsite.com"
+GM.Author = "Kai"
+GM.Email = "gkai@example.com"
+GM.Website = "N/A"
 
 AddCSLuaFile()
 
 pointsArenaForHuman = {
     {
         [0] = { -- Default loadout
-            weapons = {"weapon_smg1"}, ammo = {["SMG1"] = 30},
+            weapons = {"m9k_smgp90"}, ammo = {["SMG1"] = 30},
             shield=0,
         },
         [5] = { -- 5 points
-            weapons = {"weapon_pistol", "weapon_smg1"}, ammo = {["Pistol"] = 20, ["SMG1"] = 30},
+            weapons = {"m9k_colt1911", "m9k_magpulpdr"}, ammo = {["Pistol"] = 20, ["SMG1"] = 30},
             shield=25,
         },
         [10] = { -- 10 points
-            weapons = {"weapon_pistol", "weapon_smg1", "weapon_shotgun"}, ammo = {["Pistol"] = 30, ["SMG1"] = 50, ["Buckshot"] = 10},
+            weapons = {"m9k_colt1911", "m9k_vector", "m9k_m3"}, ammo = {["Pistol"] = 30, ["SMG1"] = 50, ["Buckshot"] = 10},
             shield=75,
         },
         [20] = { -- 20 points
-            weapons = {"weapon_pistol", "weapon_smg1", "weapon_shotgun", "weapon_rpg"}, ammo = {["Pistol"] = 50, ["SMG1"] = 100, ["Buckshot"] = 20, ["RPG_Round"] = 2},
+            weapons = {"m9k_coltpython", "m9k_honeybadger", "m9k_usas", "m9k_minigun"}, ammo = {["Pistol"] = 80, ["SMG1"] = 500, ["Buckshot"] = 75, ["RPG_Round"] = 2, ["AR2"] = 800,},
             shield=100,
         }
     }
@@ -30,10 +30,10 @@ pointsArenaForHuman = {
 pointsArenaForSCP096 = {
     {
         [0] = { -- 5 points
-            health = 500,
+            health = 1500,
         },
         [5] = { -- 5 points
-            health = 650,
+            health = 2000,
         },
     }
 }
