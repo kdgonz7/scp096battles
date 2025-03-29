@@ -164,7 +164,7 @@ if CLIENT then
 
         if IsValid(owner) and IsValid(owner:GetActiveWeapon()) and owner:GetActiveWeapon():GetClass() == "fists_of_096" then
             hintX = Lerp(FrameTime() * lerpSpeed, hintX, targetX)
-            draw.SimpleText("- E to scream (idk why you would but you can)", "Trebuchet24", hintX, ScrH() / 2, Color(255, 255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_BOTTOM)
+            draw.SimpleText("R to scream (idk why you would but you can)", "Trebuchet24", hintX, ScrH() / 2, Color(255, 255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_BOTTOM)
         else
             hintX = -200
         end
