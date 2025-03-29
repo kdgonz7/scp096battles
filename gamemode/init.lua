@@ -26,8 +26,8 @@ gameInfo = {
     HumanLevel = 0,
 }
 
-SetGlobalInt("SCP096Score", 0)
-SetGlobalInt("HumansScore", 0)
+SetGlobalInt("SCP096Score", 25)
+SetGlobalInt("HumansScore", 25)
 
 SetGlobalEntity("PlayerWhoSCP", nil)
 SetGlobalEntity("PlayerWhoHuman", nil)
@@ -62,7 +62,7 @@ hook.Add("PlayerSpawn", "SetPlayerModelSCP096", function(ply)
 
             if ply:Team() == TEAM_SCP_096 then
                 ply:SetModel("models/player/scp096.mdl") -- Replace with SCP-096 model path
-                ply:SetHealth(500)
+                ply:SetHealth(gameInfo.SCP096Health) -- Give SCp096 cur health
                 ply:SetModelScale(1.5, 0) -- Make the player model bigger
                 ply:Give("fists_of_096")
             elseif ply:Team() == TEAM_NTF then
@@ -216,7 +216,7 @@ net.Receive("BuyPointsItemSCP", function(len, ply)
         ply:SetHealth(gameInfo.SCP096Health)
         ply:ChatPrint("You purchased: " .. itemID .. "-point health!")
 
-        gameInfo.SCP096Level = itemID or gameInfo.SCP096Level
+        gameInfo.SCP096Level = itemID
         SetGlobalInt("SCP096Level", gameInfo.SCP096Level)
     else
         ply:ChatPrint("Not enough points to purchase this item!")
