@@ -1,0 +1,15 @@
+"scp096battles"
+{
+    "base"		"base"
+    "title"		"SCP-096 Battles"
+    "category"	"pvp"
+    "maps"		"^scp096_"
+    "menusystem"	"1"
+    
+    "author_name"	"Your Name"
+    "author_email"	"your.email@example.com"
+    "author_url"	"yourwebsite.com"
+    
+    "description"	"A gamemode where players battle as or against SCP-096."
+    "version"	"1.0.0"
+}
