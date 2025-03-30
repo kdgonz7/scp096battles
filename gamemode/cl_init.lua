@@ -414,11 +414,12 @@ function OpenHelpPanel()
     -- Helper function for command entries
     local function AddCommand(parent, name, command, description)
         local commandPanel = vgui.Create("DPanel", parent)
-        commandPanel:SetTall(70)
+        commandPanel:SetTall(75) -- Adjusted height slightly for better spacing with docked elements
         commandPanel:Dock(TOP)
-        commandPanel:DockMargin(10, 5, 10, 5)
+        commandPanel:DockMargin(10, 5, 10, 5) -- Left, Top, Right, Bottom margins
         commandPanel:SetAlpha(0)
-        commandPanel:AlphaTo(255, 0.3, 0.1)
+        commandPanel:AlphaTo(255, 0.3, 0.1) -- Fade-in animation
+
 
         commandPanel.Paint = function(self, w, h)
             draw.RoundedBox(6, 0, 0, w, h, colors.commandBg)
@@ -442,8 +443,8 @@ function OpenHelpPanel()
 
         local descLabel = vgui.Create("DLabel", commandPanel)
         descLabel:SetPos(10, 45)
-        descLabel:SetSize(commandPanel:GetWide() - 20, 20)
-        descLabel:SetWrap(true)
+        descLabel:SetSize(commandPanel:GetWide() + 200,  20)
+        -- descLabel:SetWrap(true)
         descLabel:SetText(description)
         descLabel:SetTextColor(colors.textNormal)
         descLabel:SetAutoStretchVertical(true)
