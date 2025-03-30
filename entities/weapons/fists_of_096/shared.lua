@@ -148,7 +148,7 @@ function SWEP:Think()
                 if not self or self == NULL then return end
                 
                 -- Check if the player's team is the correct one for the red screen effect
-                if owner:Team() == TEAM_SCP096 then
+                if owner:Team() == TEAM_SCP_096 then
                     surface.SetDrawColor(255, 0, 0, 150)
                     surface.DrawRect(0, 0, ScrW(), ScrH())
                     
