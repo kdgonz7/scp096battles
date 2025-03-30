@@ -192,6 +192,35 @@ concommand.Add("scp096_begin_game", function(ply, cmd, args)
     print("[SCP-096 Battles] Game has started!")
 end)
 
+concommand.Add("scp096_swap_teams", function(ply, cmd, args)
+    if not ply:IsAdmin() then return end
+
+    local scp096 = GetGlobalEntity("PlayerWhoSCP")
+    local human = GetGlobalEntity("PlayerWhoHuman")
+
+    if not IsValid(scp096) or not IsValid(human) then
+        ply:ChatPrint("Teams are not properly set up!")
+        return
+    end
+
+    -- Swap teams
+    scp096:SetTeam(TEAM_NTF)
+    human:SetTeam(TEAM_SCP_096)
+
+    -- Update global entities
+    SetGlobalEntity("PlayerWhoSCP", human)
+    SetGlobalEntity("PlayerWhoHuman", scp096)
+
+    -- Respawn players to apply changes
+    for _, v in ipairs(player.GetAll()) do
+        v:UnSpectate()
+        v:Spawn()
+    end
+
+    PrintMessage(HUD_PRINTTALK, "Teams have been swapped!")
+    print("[SCP-096 Battles] Teams swapped successfully.")
+end)
+
 -- [[[ NET ]]]
 net.Receive("BuyPointsItemSCP", function(len, ply)
     if ply:Team() ~= TEAM_SCP_096 then return end
