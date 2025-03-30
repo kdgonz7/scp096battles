@@ -32,8 +32,6 @@ SetGlobalInt("HumansScore", 0)
 SetGlobalEntity("PlayerWhoSCP", nil)
 SetGlobalEntity("PlayerWhoHuman", nil)
 
-
-
 function GM:Initialize()
     print("[SCP-096 Battles] Gamemode initializing...")
 
