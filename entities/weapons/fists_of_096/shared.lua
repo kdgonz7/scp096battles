@@ -146,14 +146,17 @@ function SWEP:Think()
                 if not IsValid(owner) or not owner:Alive() then return end
                 if owner == nil or owner == NULL then return end
                 if not self or self == NULL then return end
-
-                surface.SetDrawColor(255, 0, 0, 150)
-                surface.DrawRect(0, 0, ScrW(), ScrH())
                 
-                if IsValid(self) and self:GetNWBool("CanKill", false) then
-                    draw.SimpleText("You can now use kill mode (R)", "Trebuchet24", ScrW() / 2, ScrH() - 50, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
-                else
-                    draw.SimpleText("Kill mode recharging", "Trebuchet24", ScrW() / 2, ScrH() - 50, Color(173, 173, 173), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
+                -- Check if the player's team is the correct one for the red screen effect
+                if owner:Team() == TEAM_SCP096 then
+                    surface.SetDrawColor(255, 0, 0, 150)
+                    surface.DrawRect(0, 0, ScrW(), ScrH())
+                    
+                    if IsValid(self) and self:GetNWBool("CanKill", false) then
+                        draw.SimpleText("You can now use kill mode (R)", "Trebuchet24", ScrW() / 2, ScrH() - 50, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
+                    else
+                        draw.SimpleText("Kill mode recharging", "Trebuchet24", ScrW() / 2, ScrH() - 50, Color(173, 173, 173), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
+                    end
                 end
             end)
 
