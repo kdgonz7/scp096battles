@@ -4,6 +4,9 @@ GM.Author = "Kai"
 GM.Email = "gkai@example.com"
 GM.Website = "N/A"
 
+TEAM_SCP_096 = 1
+TEAM_NTF = 2
+
 AddCSLuaFile()
 
 pointsArenaForHuman = {
