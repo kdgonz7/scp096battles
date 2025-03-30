@@ -104,7 +104,7 @@ function SWEP:PrimaryAttack()
     
     local trace = {}
     trace.start = owner:GetShootPos()
-    trace.endpos = trace.start + owner:GetAimVector() * 75
+    trace.endpos = trace.start + owner:GetAimVector() * 100 -- Increased from 75 to 100
     trace.filter = owner
     trace.mask = MASK_SHOT_HULL
     
@@ -112,8 +112,10 @@ function SWEP:PrimaryAttack()
     
     if !IsValid(tr.Entity) then
         trace.start = owner:GetShootPos()
-        trace.endpos = trace.start + owner:GetAimVector() * 75
+        trace.endpos = trace.start + owner:GetAimVector() * 100 -- Increased from 75 to 100
         trace.filter = owner
+        trace.mins = Vector(-10, -10, -10) -- Added hull size for a bigger hit radius
+        trace.maxs = Vector(10, 10, 10)   -- Added hull size for a bigger hit radius
         trace.mask = MASK_SHOT_HULL
         tr = util.TraceHull(trace)
     end
@@ -148,7 +150,7 @@ function SWEP:Think()
                 surface.SetDrawColor(255, 0, 0, 150)
                 surface.DrawRect(0, 0, ScrW(), ScrH())
                 
-                if self:GetNWBool("CanKill", false) then
+                if IsValid(self) and self:GetNWBool("CanKill", false) then
                     draw.SimpleText("You can now use kill mode (R)", "Trebuchet24", ScrW() / 2, ScrH() - 50, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
                 else
                     draw.SimpleText("Kill mode recharging", "Trebuchet24", ScrW() / 2, ScrH() - 50, Color(173, 173, 173), TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
