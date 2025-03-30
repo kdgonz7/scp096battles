@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP-096 Battles - GMod Gamemode</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'LucideIcons';
+            src: url(https://cdn.jsdelivr.net/npm/lucide-static@0.473.0/font/lucide.ttf) format('truetype');
+        }
+
+        .lucide {
+            font-family: 'LucideIcons';
+            font-size: 1.5rem;
+            /* Adjust icon size as needed */
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Define icon content using CSS pseudo-elements */
+        .icon-sun::before {
+            content: "\F045F";
+        }
+
+        /* Unicode for sun */
+        .icon-moon::before {
+            content: "\F038D";
+        }
+
+        /* Unicode for moon */
+
+        /* Basic transition for theme toggle */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    </style>
+
+    <script>
+        // Tailwind config (optional customization)
+        tailwind.config = {
+            darkMode: 'class', // Enable class-based dark mode
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        // Define custom dark/light mode colors if needed
+                        dark: {
+                            bg: '#1a202c', // Example dark background
+                            text: '#e2e8f0', // Example dark text
+                            card: '#2d3748', // Example dark card background
+                            accent: '#4299e1', // Example accent
+                        },
+                        light: {
+                            bg: '#ffffff', // Example light background
+                            text: '#2d3748', // Example light text
+                            card: '#edf2f7', // Example light card background
+                            accent: '#3182ce', // Example accent
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text font-sans antialiased">
+    <header class="py-4 shadow-md dark:shadow-lg dark:shadow-gray-800/50">
+        <nav class="container mx-auto px-6 flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl font-bold text-light-accent dark:text-dark-accent">
+                SCP-096 Battles
+            </h1>
+            <a href="index.html" download=""
+                class="p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-accent dark:focus:ring-dark-accent dark:focus:ring-offset-dark-bg text-light-text dark:text-dark-text hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <button aria-label="Download" class="lucide text-sm ml-4" style="font-family: inherit;">
+                    🔄️ Download
+                </button>
+            </a>
+            <button id="theme-toggle" aria-label="Toggle theme"
+                class="p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-accent dark:focus:ring-dark-accent dark:focus:ring-offset-dark-bg text-light-text dark:text-dark-text hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <span class="lucide">
+                    🌙
+                </span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">The Ultimate 1v1 Showdown</h2>
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                Face your fears or become the nightmare. In SCP-096 Battles, one player hunts as the unstoppable SCP-096
+                while the other fights for survival as an armed human. Earn points, upgrade your abilities, and dominate
+                the arena.
+            </p>
+        </section>
+
+        <section class="space-y-12 md:space-y-16">
+
+            <div
+                class="flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-light-card dark:bg-dark-card p-6 rounded-lg shadow-sm">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h3 class="text-2xl font-bold mb-3 text-light-accent dark:text-dark-accent">Intense 1v1 Combat</h3>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Experience heart-pounding, asymmetrical battles where strategy and reflexes are key. Whether
+                        you're the hunter or the hunted, every match is a unique challenge. Adapt your tactics to
+                        outsmart your opponent in close-quarters maps designed for confrontation.
+                    </p>
+                </div>
+
+                <div class="md:w-1/2">
+                    <img src="scp096gif1.gif" alt="Placeholder image of SCP vs Human confrontation"
+                        class="rounded-lg shadow-md w-full h-auto object-cover"
+                        onerror="this.src='https://placehold.co/600x400/cccccc/000000?text=Image+Error'; this.alt='Error loading image'">
+                </div>
+            </div>
+
+            <div
+                class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12 bg-light-card dark:bg-dark-card p-6 rounded-lg shadow-sm">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h3 class="text-2xl font-bold mb-3 text-light-accent dark:text-dark-accent">Become the Nightmare:
+                        SCP-096</h3>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Play as the infamous "Shy Guy". Initially passive, unleash unstoppable rage when provoked.
+                        Utilize incredible speed, devastating melee attacks, and unique abilities to hunt down the human
+                        relentlessly. Master the rage mechanic to become an inescapable force.
+                    </p>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="scp096gif2.gif" alt="Placeholder image representing SCP-096 gameplay"
+                        class="rounded-lg shadow-md w-full h-auto object-cover"
+                        onerror="this.src='https://placehold.co/600x400/cccccc/000000?text=Image+Error'; this.alt='Error loading image'">
+                </div>
+            </div>
+
+            <div
+                class="flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-light-card dark:bg-dark-card p-6 rounded-lg shadow-sm">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h3 class="text-2xl font-bold mb-3 text-light-accent dark:text-dark-accent">Fight for Survival: The
+                        Human</h3>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        As the human, your survival depends on firepower and cunning. Access a diverse arsenal of
+                        Garry's Mod weapons to fight back against SCP-096. Use the environment to your advantage, manage
+                        your ammo, and land critical shots before it's too late. Can you keep your cool and survive the
+                        encounter?
+                    </p>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="scp096gif3.gif" alt="Placeholder image representing Human weapons"
+                        class="rounded-lg shadow-md w-full h-auto object-cover"
+                        onerror="this.src='https://placehold.co/600x400/cccccc/000000?text=Image+Error'; this.alt='Error loading image'">
+                </div>
+            </div>
+
+            <div
+                class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12 bg-light-card dark:bg-dark-card p-6 rounded-lg shadow-sm">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h3 class="text-2xl font-bold mb-3 text-light-accent dark:text-dark-accent">Earn Points & Upgrade
+                    </h3>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Victory earns points! Use your hard-earned points between rounds to purchase powerful upgrades.
+                        Enhance SCP-096's abilities (like faster rage activation or increased health) or unlock better
+                        weapons and equipment for the human. Customize your loadout to match your playstyle.
+                    </p>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="scp096gif4.gif" alt="Placeholder image representing the upgrade system"
+                        class="rounded-lg shadow-md w-full h-auto object-cover"
+                        onerror="this.src='https://placehold.co/600x400/cccccc/000000?text=Image+Error'; this.alt='Error loading image'">
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="mt-16 py-6 border-t border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-6 text-center text-gray-500 dark:text-gray-400 text-sm">
+            &copy; <span id="current-year"></span> SCP-096 Battles Gamemode. All rights reserved.
+            <br>Credits to Micah for footage.
+        </div>
+    </footer>
+
+    <script>
+        // --- Theme Toggle Script ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleIcon = themeToggleBtn.querySelector('.lucide');
+        const htmlElement = document.documentElement; // Get the <html> element
+
+        // Function to apply theme (dark/light)
+        const applyTheme = (theme) => {
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark');
+                themeToggleIcon.classList.remove('icon-sun');
+                themeToggleIcon.classList.add('icon-moon');
+                themeToggleBtn.setAttribute('aria-label', 'Switch to light mode');
+            } else {
+                htmlElement.classList.remove('dark');
+                themeToggleIcon.classList.remove('icon-moon');
+                themeToggleIcon.classList.add('icon-sun');
+                themeToggleBtn.setAttribute('aria-label', 'Switch to dark mode');
+            }
+        };
+
+        // Check localStorage for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        // Check system preference if no saved theme
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Determine initial theme: saved theme > system preference > default (dark)
+        const initialTheme = savedTheme ? savedTheme : (prefersDark ? 'dark' : 'light');
+
+        // Apply the initial theme when the script loads
+        applyTheme(initialTheme);
+        // Ensure the class is set correctly on initial load if default is light but saved is dark
+        if (initialTheme === 'dark' && !htmlElement.classList.contains('dark')) {
+            htmlElement.classList.add('dark');
+        } else if (initialTheme === 'light' && htmlElement.classList.contains('dark')) {
+            // Remove dark class if default HTML has it but preference is light
+            htmlElement.classList.remove('dark');
+        }
+
+
+        // Add event listener for the toggle button
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            applyTheme(newTheme); // Apply the new theme visually
+            localStorage.setItem('theme', newTheme); // Save the preference
+        });
+
+        // --- Footer Year ---
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
